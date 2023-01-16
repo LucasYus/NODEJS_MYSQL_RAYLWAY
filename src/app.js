@@ -12,11 +12,11 @@ app.get ('/', (req,res) => {
 })
 
 app.get ('/ping', async(req,res) => {
-   const result = await pool.query ('SELECT * from userdb.users')
+   const result = await pool.query ('SELECT * from users')
    console.log (result[0])
 })
 
 app.get ('/create', async(req,res) => {
-    const insert =  await pool.query (`INSERT INTO userdb.users(name) VALUES ("Lucas")`)
+    const insert =  await pool.query (`INSERT INTO users(name) VALUES ("Lucas")`)
    console.log (insert)
  })
