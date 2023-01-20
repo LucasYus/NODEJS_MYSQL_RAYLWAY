@@ -7,13 +7,15 @@ const app = Express()
 app.listen (PORT)
 console.log('servidor en el puerto 3000')
 
-app.get ('/', (req,res) => {
-    res.send ('SELECT * from users')
+app.get ('/', async (req,res) => {
+    // res.send ('SELECT * from users')
+    const [result] = await pool.query (`SELECT * from users`)
+    res.json (result)
 })
 
 app.get ('/ping', async(req,res) => {
    const result = await pool.query (`SELECT "Hola Lucas" AS RESULT`)
-   console.log (result[0])
+   res.send (result[0])
 })
 
 app.get ('/create', async(req,res) => {
